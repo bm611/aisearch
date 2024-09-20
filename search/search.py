@@ -19,3 +19,4 @@ app = rx.App(
 )
 # pages & routes
 app.add_page(pages.home_page, route="/")
+app.add_page(pages.chat_page, route="/chat")

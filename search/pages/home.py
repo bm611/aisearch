@@ -1,5 +1,6 @@
 import reflex as rx
 from search import ui
+from search.state import State
 
 
 def home_page() -> rx.Component:
@@ -29,13 +30,15 @@ def home_page() -> rx.Component:
             ),
             rx.hstack(
                 rx.input(
-                    name="new_item",
                     placeholder="Enter your prompt here...",
                     class_name="p-4 h-12 w-64 md:w-[40rem] md:h-14 rounded-md text-md md:text-lg shadow-2xl ring-2 ring-gray-300",
+                    value=State.query,
+                    on_change=State.set_query,
                 ),
                 rx.button(
                     rx.icon("arrow-up"),
                     class_name="h-12 md:h-14 rounded-md text-md shadow-2xl",
+                    on_click=rx.redirect("/chat"),
                 ),
                 class_name="mt-8",
             ),
