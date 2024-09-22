@@ -31,7 +31,7 @@ def home_page() -> rx.Component:
             rx.hstack(
                 rx.input(
                     placeholder="Enter your prompt here...",
-                    class_name="p-4 h-12 w-64 md:w-[40rem] md:h-14 rounded-md text-md md:text-lg shadow-2xl ring-2 ring-gray-300",
+                    class_name="p-4 h-12 w-72 md:w-[40rem] md:h-14 rounded-md text-md md:text-lg shadow-2xl ring-2 ring-gray-300",
                     value=State.query,
                     on_change=State.set_query,
                 ),
@@ -42,6 +42,6 @@ def home_page() -> rx.Component:
                 ),
                 class_name="mt-8",
             ),
-            class_name="flex items-center h-[30vh] md:h-[50vh]",
+            class_name="flex items-center h-[50vh]",
         ),
     )

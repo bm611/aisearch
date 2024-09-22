@@ -18,6 +18,8 @@ def source_card(val):
                 spacing="2",
                 flex_grow=0,
             ),
+            href=val["url"],
+            is_external=True,
         ),
         as_child=True,
     )
@@ -39,11 +41,23 @@ def chat_page() -> rx.Component:
                         rx.icon("book-open-text"),
                         rx.text("SOURCES", class_name="font-bold"),
                     ),
-                    rx.center(
-                        rx.grid(
-                            rx.foreach(State.metadata, source_card),
-                            columns=rx.breakpoints(initial="1", sm="2", md="3", lg="4"),
-                            gap=10,
+                    rx.cond(
+                        State.is_generating,
+                        rx.center(
+                            rx.hstack(
+                                rx.spinner(size="3"),
+                                rx.text("Fetching Sources...", class_name="mt-2"),
+                                class_name="flex justify-center items-center",
+                            ),
+                        ),
+                        rx.center(
+                            rx.grid(
+                                rx.foreach(State.metadata, source_card),
+                                columns=rx.breakpoints(
+                                    initial="1", sm="2", md="3", lg="4"
+                                ),
+                                gap=10,
+                            ),
                         ),
                     ),
                 ),
