@@ -113,14 +113,14 @@ def get_text_from_url(url):
         return None
 
 
-context = ""
-user_question = "Who are players playing Laver cup in 2024"
-search_queries = generate_search_queries(user_question)
-search_results = get_unique_search_results(search_queries)
-for result in search_results:
-    page_text = get_text_from_url(result.get("url"))
-    if page_text is not None:
-        context += page_text
-response = generate_search_response(context, user_question)
-
-print(response)
+def generate_answer(user_question):
+    context = ""
+    search_queries = generate_search_queries(user_question)
+    print(search_queries)
+    search_results = get_unique_search_results(search_queries)
+    for result in search_results:
+        page_text = get_text_from_url(result.get("url"))
+        if page_text is not None:
+            context += page_text
+    response = generate_search_response(context, user_question)
+    return response

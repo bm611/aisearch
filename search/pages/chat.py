@@ -9,15 +9,20 @@ def chat_page() -> rx.Component:
             rx.box(
                 rx.vstack(
                     rx.hstack(
-                        rx.icon("search"),
+                        rx.icon("book-open-text"),
                         rx.text("SOURCES", class_name="font-bold"),
                     ),
-                    rx.unordered_list(
-                        rx.list_item("Item 1"),
-                        rx.list_item("Item 2"),
-                        rx.list_item("Item 3"),
-                        rx.list_item("Item 4"),
-                        rx.list_item("Item 5"),
+                    rx.center(
+                        rx.grid(
+                            rx.card("https://example.com"),
+                            rx.card("https://randomwebsite.org"),
+                            rx.card("https://sampleurl.net"),
+                            rx.card("https://testdomain.com"),
+                            rx.card("https://dummysite.io"),
+                            rx.card("https://dummysite.io"),
+                            columns="3",
+                            gap=10,
+                        ),
                     ),
                 ),
                 class_name="p-4 w-full md:w-3/4 border-2 border-black rounded-lg",
@@ -38,9 +43,7 @@ def chat_page() -> rx.Component:
                         rx.icon("message-square-quote"),
                         rx.text("ANSWER", class_name="font-bold"),
                     ),
-                    rx.text(
-                        "To add a margin to the box on smaller screens, you can use Tailwind CSS's responsive design classes. These classes allow you to apply different styles based on screen size breakpoints."
-                    ),
+                    rx.markdown(State.answer),
                 ),
                 class_name="p-4 w-full md:w-3/4 border-2 border-black rounded-lg",
             ),

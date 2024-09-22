@@ -38,7 +38,7 @@ def home_page() -> rx.Component:
                 rx.button(
                     rx.icon("arrow-up"),
                     class_name="h-12 md:h-14 rounded-md text-md shadow-2xl",
-                    on_click=rx.redirect("/chat"),
+                    on_click=State.handle_submit,
                 ),
                 class_name="mt-8",
             ),
