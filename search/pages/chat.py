@@ -46,7 +46,7 @@ def chat_page() -> rx.Component:
                         rx.center(
                             rx.hstack(
                                 rx.spinner(size="3"),
-                                rx.text("Fetching Sources...", class_name="mt-2"),
+                                rx.text("Fetching Sources..."),
                                 class_name="flex justify-center items-center",
                             ),
                         ),
@@ -84,7 +84,7 @@ def chat_page() -> rx.Component:
                         rx.center(
                             rx.hstack(
                                 rx.spinner(size="3"),
-                                rx.text("Generating answer...", class_name="mt-2"),
+                                rx.text("Generating answer..."),
                                 class_name="flex justify-center items-center",
                             ),
                         ),
