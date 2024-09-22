@@ -10,7 +10,10 @@ def source_card(val):
                 rx.avatar(src=val["img"], size="1"),
                 rx.box(
                     rx.text(val["name"], class_name="font-bold"),
-                    rx.text(val["url"]),
+                    rx.text(
+                        val["url"],
+                        class_name="truncate w-full text-sm text-gray-500",
+                    ),
                 ),
                 spacing="2",
                 flex_grow=0,

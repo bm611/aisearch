@@ -13,6 +13,7 @@ class State(rx.State):
 
     def update_query(self):
         self.query = ""
+        self.metadata = []
         return rx.redirect("/")
 
     def handle_submit(self):
