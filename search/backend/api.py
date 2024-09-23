@@ -121,7 +121,7 @@ def generate_answer(user_question):
     search_results = get_unique_search_results(search_queries)
     for result in search_results:
         page_text = get_text_from_url(result.get("url"))
-        if page_text is not None:
+        if page_text is not None and result.get("profile"):
             metadata.append(result.get("profile"))
             context += page_text
     response = generate_search_response(context, user_question)
