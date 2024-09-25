@@ -42,7 +42,7 @@ def chat_page() -> rx.Component:
                         rx.text("SOURCES", class_name="font-bold"),
                     ),
                     rx.cond(
-                        State.is_generating,
+                        State.is_fetching_metadata,
                         rx.center(
                             rx.hstack(
                                 rx.spinner(size="3"),
@@ -95,5 +95,5 @@ def chat_page() -> rx.Component:
             ),
             class_name="mt-10 flex items-center justify-center",
         ),
-        on_mount=State.generate_answer_async,
+        on_mount=[State.fetch_metadata_async, State.generate_answer_async],
     )

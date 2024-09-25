@@ -1,8 +1,8 @@
 *.db
 *.py[cod]
+.DS_Store
+.env
+.venv
 .web
 __pycache__/
 assets/external/
-.venv
-.env
-.DS_Store

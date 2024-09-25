@@ -113,16 +113,22 @@ def get_text_from_url(url):
         return None
 
 
-def generate_answer(user_question):
-    context = ""
-    metadata = []
+def fetch_metadata(user_question):
     search_queries = generate_search_queries(user_question)
     print(search_queries)
     search_results = get_unique_search_results(search_queries)
-    for result in search_results:
-        page_text = get_text_from_url(result.get("url"))
-        if page_text is not None and result.get("profile"):
-            metadata.append(result.get("profile"))
+    metadata = [
+        result.get("profile") for result in search_results if result.get("profile")
+    ]
+    print(metadata)
+    return metadata
+
+
+def generate_answer(user_question, metadata):
+    context = ""
+    for profile in metadata:
+        page_text = get_text_from_url(profile.get("url"))
+        if page_text is not None:
             context += page_text
     response = generate_search_response(context, user_question)
-    return response, metadata
+    return response
