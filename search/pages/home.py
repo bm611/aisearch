@@ -31,7 +31,7 @@ def home_page() -> rx.Component:
             rx.hstack(
                 rx.input(
                     placeholder="Enter your prompt here...",
-                    class_name="p-4 h-12 w-72 md:w-[40rem] md:h-14 rounded-md text-md md:text-lg shadow-2xl border-2 border-black bg-transparent",
+                    class_name="p-2 h-12 w-72 md:w-[40rem] md:h-14 rounded-md text-md md:text-lg shadow-2xl border-2 border-black bg-transparent",
                     value=State.query,
                     on_change=State.set_query,
                 ),
