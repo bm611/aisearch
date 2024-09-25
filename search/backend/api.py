@@ -16,7 +16,7 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 # gemini api config
 genai.configure(api_key=GEMINI_API_KEY)
 model_json = genai.GenerativeModel(
-    "gemini-1.5-flash",
+    "gemini-1.5-flash-002",
     generation_config={"response_mime_type": "application/json"},
 )
 model = genai.GenerativeModel("gemini-1.5-flash")
@@ -124,11 +124,31 @@ def fetch_metadata(user_question):
     return metadata
 
 
+# def generate_answer(user_question, metadata):
+#     context = ""
+#     for profile in metadata:
+#         page_text = get_text_from_url(profile.get("url"))
+#         if page_text is not None:
+#             context += page_text
+#     response = generate_search_response(context, user_question)
+#     return response
+
+
 def generate_answer(user_question, metadata):
     context = ""
     for profile in metadata:
         page_text = get_text_from_url(profile.get("url"))
         if page_text is not None:
             context += page_text
-    response = generate_search_response(context, user_question)
-    return response
+
+    SEARCH_PROMPT = f"""
+    You are an expert at summarizing search results and providing concise answers to user questions.
+
+    USER QUESTION: {user_question}
+
+    CONTEXT: {context}
+    """
+
+    response = model.generate_content(SEARCH_PROMPT, stream=True)
+    for chunk in response:
+        yield chunk.text

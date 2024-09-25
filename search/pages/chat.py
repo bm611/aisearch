@@ -81,12 +81,13 @@ def chat_page() -> rx.Component:
                     ),
                     rx.cond(
                         State.is_generating,
-                        rx.center(
+                        rx.vstack(
                             rx.hstack(
                                 rx.spinner(size="3"),
                                 rx.text("Generating answer..."),
                                 class_name="flex justify-center items-center",
                             ),
+                            rx.markdown(State.answer),
                         ),
                         rx.markdown(State.answer),
                     ),
@@ -95,5 +96,5 @@ def chat_page() -> rx.Component:
             ),
             class_name="mt-10 flex items-center justify-center",
         ),
-        on_mount=[State.fetch_metadata_async, State.generate_answer_async],
+        on_mount=[State.fetch_metadata_async, State.generate_answer],
     )

@@ -28,7 +28,11 @@ class State(rx.State):
             self.is_generating = True
             # return self.generate_answer_async
 
-    async def generate_answer_async(self):
+    async def generate_answer(self):
         if self.is_generating:
-            self.answer = backend.generate_answer(self.query, self.metadata)
+            self.answer = ""  # Reset answer before streaming
+            generator = backend.generate_answer(self.query, self.metadata)
+            for chunk in generator:
+                self.answer += chunk
+                yield
             self.is_generating = False
