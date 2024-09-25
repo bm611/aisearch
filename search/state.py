@@ -14,6 +14,7 @@ class State(rx.State):
 
     def update_query(self):
         self.query = ""
+        self.answer = ""
         self.metadata = []
         return rx.redirect("/")
 
